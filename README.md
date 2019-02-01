@@ -139,3 +139,33 @@ It will return the array of all your respond items you described in settings obj
 
 ---
 
+
+## Example
+```javascript
+//Initialize
+let v = new Validator();
+
+//Apply settings
+v.setSettings({
+    'script': function(tag){
+        if(tag.hasProp('type') && tag.getProp('type').val == 'text/html')
+            return ['Script tag found'];
+        return [];
+    },
+    '*': function(tag){
+        let arr = [];
+        for(let p of tag.iterateProps()){
+            let pr = p[1]; //p structure is [key, {key,val}];
+            if(pr.key.indexOf('on'))
+                arr.push(pr.key + ' event found placed on ' + tag.tagName + ' tag');
+        }
+        return arr;
+    }
+});
+
+//Get the result
+let msgs = v.check('<script type="text/javascript">console.log(1)</script> <div><span onmouseover="console.log(2)">Hey here!</span></div>');
+console.log(msgs); //["Script tag found", "onmouseover event found placed on span tag"];
+```
+
+---
