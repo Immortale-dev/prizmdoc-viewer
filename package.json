@@ -6,7 +6,8 @@
   "main": "main.js",
   "scripts": {
     "prestart": "node check-node-version.js",
-    "start": "node main.js"
+    "start": "node main.js",
+    "debug": "node --inspect-brk main.js"
   },
   "repository": {
     "type": "git",

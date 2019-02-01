@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const logger = require('morgan');
 const indexRouter = require('./routes/index');
+const apiRouter = require('./routes/api/index');
 const createProxyRouteToPAS = require('./pas/createProxyRouteToPAS');
 const app = express();
 const fs = require('fs');
@@ -35,6 +36,12 @@ app.use(createProxyRouteToPAS('/pas-proxy', config.pasBaseUrl, config.apiKey));
 
 // Register the default route which will display a simple viewer.
 app.use('/', indexRouter);
+
+//Allow JSON requests
+app.use(express.json());
+
+// Register api routes
+app.use('/api/', apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

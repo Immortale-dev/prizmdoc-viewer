@@ -17,3 +17,9 @@ code {
   padding: 2px;
   border-radius: 5px;
 }
+
+.text-error{
+    color: #d20000;
+    font-size: 16px;
+    font-weight: bold;
+}
