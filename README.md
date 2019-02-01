@@ -109,3 +109,33 @@ There are a couple of key things to note about this sequence:
 
 1. **You should render your HTML as soon as possible.** As soon as you have a `viewingSessionId`, you should send your HTML to the browser so that the viewer can start loading.
 2. **Your web application or web server needs to have a route that the viewer can use as a proxy to PAS.** The viewer is going to make lots of requests to PAS in order to load document content. These requests need to be proxied through either your web application or web server at a route of your choosing. This sample illustrates how to set this up with a simple proxy that runs as part of this web application (see `app.js` and `pas/createProxyRouteToPAS.js`).
+
+
+---
+
+# Security checker instruction
+
+The security checker functionality placed to **/validator** folder
+You can find a **Validator** class that use **HTMLParser** class to parse and check html text for security issues.
+
+After creating the new Validator instance as `new Validator()`, you can use next public methods to check the document for security issues.
+
+
+
+### setSettings
+to sett your own security finding issues. It is accepts the `Object` with predefined tags you want to match as keys and function that proceed this tag as value. Use `"*"` key to match all tags
+The `HTMLParserTag` class instance will passed to your function as first parameter. 
+You can use `hasProp` method of this instance to check if property exsits in current tag, `getProp` to get the property from tag or `iterateProps` method to get the iterable object of properties. You can also use the `tagName` property to check for tag name of current tag, you can also access the parent of this tag with `parent` property.
+
+Your function should return the array of responds items or empty array.
+
+---
+
+### check
+This method used to apply your settings object to the html string you want to check. It accepts one require `string` as first arguments - string you want to check, and optional settings `Object` as second parameter.
+If no `settings` passed, it will use default one or the one you passed with `setSettings` method.
+
+It will return the array of all your respond items you described in settings object
+
+---
+

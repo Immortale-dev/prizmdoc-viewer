@@ -105,7 +105,7 @@ class HTMLParser extends HTMLParserBase{
                             
                             ///@TODO
                             //this part should be recoded as it works very slow;
-                            //Works case of whole algorithm because of this part growth from O(n) to O(n^2) 
+                            //Worst case of whole algorithm because of this part growth from O(n) to O(n^2) 
                             //where n is the length of html document
                             let ind = this._closePlainIndex(str.substr(i), t.tagName);
                             

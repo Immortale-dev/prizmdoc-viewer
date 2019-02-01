@@ -38,7 +38,7 @@ class HTMLValidator{
         }
         
         //And return all found errrors
-        return msgs.filter( (val,ind,self) => self.indexOf(val) === ind);
+        return msgs;
     }
     
     //set default settings that match trial task requirements

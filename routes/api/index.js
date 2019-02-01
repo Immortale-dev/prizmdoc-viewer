@@ -53,7 +53,8 @@ module.exports = router;
 function validate(data){
     //Check file with Validator
     let v = new Validator();
-    return v.check(data.toString('utf8'));
+    let arr = v.check(data.toString('utf8'));
+    return arr.filter( (val,ind,self) => self.indexOf(val) === ind);
 }
 
 
