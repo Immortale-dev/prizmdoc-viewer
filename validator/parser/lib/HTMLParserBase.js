@@ -1,9 +1,11 @@
+//Base class that extends by HTMLParserTag and HTMLParser
 class HTMLParserBase{
     
     constructor(){
         this._defaults();
     }
     
+    //Set defaults properties
     _defaults(){
         this.C = {
             STARTTAG: '<',
@@ -20,6 +22,7 @@ class HTMLParserBase{
         this._singleTags = ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr'];
     }
     
+    //Check if character is space like
     _isEmptyChar(c){
         return this._emptyCharacters.includes(c);
     }

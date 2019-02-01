@@ -4,10 +4,14 @@ const pas = require('../../pas/pasRequest');
 const Validator = require('../../validator/Validator');
 //debugger;
 
+
+//Catch file upload event which should be chacked for security things
 router.post('/upload/', async (req,res)=>{
     
+    //Uploading error message
     let fileError = ['Something bad happend. Please try again later'];
     
+    //Convert data from base64
     let data;
     let name = req.body.name||'test.html';
     try{
@@ -20,7 +24,10 @@ router.post('/upload/', async (req,res)=>{
         });
     }
     
+    //Validate file
     let errors = validate(data);
+    
+    //If ther was some errors, return them to frontend
     if(errors.length){
         return res.json({
             success: false,
@@ -28,8 +35,10 @@ router.post('/upload/', async (req,res)=>{
         });
     }
     
+    //Upload document
     let id = await viewDocument(name, data);
     
+    //Return success message
     res.json({
         success: true,
         id
@@ -42,6 +51,7 @@ module.exports = router;
 
 
 function validate(data){
+    //Check file with Validator
     let v = new Validator();
     return v.check(data.toString('utf8'));
 }

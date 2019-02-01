@@ -1,3 +1,4 @@
+//Tag Property class
 class HTMLParserProp{
     constructor({key,val}){
         this.key = key;
